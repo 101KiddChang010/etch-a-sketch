@@ -21,30 +21,33 @@ for (let x = 0; x < 256; x++) {
 
 document.getElementById("btn").addEventListener("click", function() {
     let getInputPixel = document.getElementById("inputPixel").value;
-    oneIncrementedByOne = 1;
 
-    document.getElementById("container-draw").style.gridTemplateColumns = "repeat(" + getInputPixel.toString() + ", 1fr)";
-    document.getElementById("container-draw").style.gridTemplateRows = "repeat(" + getInputPixel.toString() + ", 1fr)";
+    if (getInputPixel > 0 && getInputPixel < 101) {
+        oneIncrementedByOne = 1;
 
-    getInputPixel *= getInputPixel;
+        document.getElementById("container-draw").style.gridTemplateColumns = "repeat(" + getInputPixel.toString() + ", 1fr)";
+        document.getElementById("container-draw").style.gridTemplateRows = "repeat(" + getInputPixel.toString() + ", 1fr)";
 
-    while (getContainerDiv.firstChild) {
-        getContainerDiv.removeChild(getContainerDiv.lastChild)
-    }
+        getInputPixel *= getInputPixel;
 
-    for (let x = 0; x < getInputPixel; x++) {
-        let gridID = "draw";
-        gridID += oneIncrementedByOne.toString();
+        while (getContainerDiv.firstChild) {
+            getContainerDiv.removeChild(getContainerDiv.lastChild)
+        }
 
-        const createDiv = document.createElement("div");
-        createDiv.setAttribute("id",gridID);
-        createDiv.classList.add("draw");
-        getContainerDiv.appendChild(createDiv);
+        for (let x = 0; x < getInputPixel; x++) {
+            let gridID = "draw";
+            gridID += oneIncrementedByOne.toString();
 
-        document.getElementById(gridID).addEventListener("mouseover", function() {
-            document.getElementById(gridID).style.backgroundColor = "black";
-        });
+            const createDiv = document.createElement("div");
+            createDiv.setAttribute("id",gridID);
+            createDiv.classList.add("draw");
+            getContainerDiv.appendChild(createDiv);
 
-        oneIncrementedByOne++;
+            document.getElementById(gridID).addEventListener("mouseover", function() {
+                document.getElementById(gridID).style.backgroundColor = "black";
+            });
+
+            oneIncrementedByOne++;
+        }
     }
 });
